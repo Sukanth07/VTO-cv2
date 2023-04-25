@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.views.decorators.csrf import csrf_exempt
 import cv2
 import numpy as np
 
@@ -16,6 +17,8 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_fronta
 
 # Create your views here.
 @api_view(['POST'])
+@csrf_exempt
+
 def overlay_jewellery(request):
     
     frame_bytes = request.data.get('frame')

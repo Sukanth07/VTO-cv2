@@ -19,9 +19,11 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_fronta
 @api_view(['POST'])
 @csrf_exempt
 
-def overlay_jewellery(request):
+def home(request):
     name = request.POST.get('name')
-    print(name)
+    return Response(f"hello, {name}")
+
+def overlay_jewellery(request):
     frame_bytes = request.data.get('frame')
     nparr = np.frombuffer(frame_bytes.read(), np.uint8)
     frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
